@@ -1,0 +1,78 @@
+<head>
+  <style media="screen">
+    *{
+      margin:0;
+      padding:0;
+    }
+    .heading{
+      margin-top:0;
+      width:100%;
+      height:15%;
+      background-color:#7268A6;
+    }
+    .heading h1{
+      padding-top:20px;
+    }
+    .newsblock{
+      margin-left:30%;
+      margin-right:30%;
+      text-align:center;
+      padding:30px;
+    }
+    textarea{
+      width:100%;
+      height:30%;
+      border:10px solid #B6CEC7;
+      border-radius:10px;
+      padding:5px;
+    }
+    input[type=submit]{
+      margin-top:25px;
+      padding:10px;
+      border:2px solid black;
+      margin-bottom:20px;
+    }
+    .result{
+      font-size:25px;
+
+    }
+
+    #genuine{
+      color:#86A3C3;
+    }
+    #fake{
+      color:'Red';
+    }
+
+  </style>
+</head>
+<body>
+
+
+<div class="heading">
+  <h1 style ="color:#D8E0BB;text-align:center">COVID-19 FAKE WHATSAPP TEXT PREDICTOR</h1>
+</div>
+
+<div class="newsblock">
+
+  <form  action="{% url 'news' %}" method="post">
+    {% csrf_token %}
+    <h2>Enter the message to be checked.!!</h2>
+    <textarea name="msgtext" rows="20" cols="80"></textarea><br>
+    <input type="submit" value="Submit"><br>
+
+    <div class="result">
+      {% ifequal ans "Fake" %}
+        <div id="fake" style="color:red;">
+          {{ ans }}
+        </div>
+      {% else %}
+      <div id="genuine" style="color:blue;">
+        {{ ans }}
+      </div>
+      {% endifequal %}
+    </div>
+
+  </form>
+  </div>
+</body>
